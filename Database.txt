@@ -1,0 +1,315 @@
+CREATE DATABASE java_shop_d;
+Use  java_shop_d;
+
+create table ROLE(
+    Id int(11) not null primary key auto_increment,
+    Name varchar(100) not null
+);
+insert into ROLE(Id, Name) VALUES (1,'admin');
+insert into ROLE(Id, Name) VALUES (2,'user');
+
+create table  USER(
+    Id int(11) not null auto_increment primary key,
+    User_Name varchar(100) not null ,
+    Password varchar(100) not null,
+    Phone varchar(100) not null ,
+    Email varchar(100) not null ,
+    Role_id int,
+    constraint fk_1 foreign key (Role_id) references role(Id)
+);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('admin','123456','0987120758','ducminhh1999@gmail.com',1);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user','123456','017358563','ducminhh1999@gmail.com',2);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user1','123456','0173585631','ducminhh1999@gmail.com1',2);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user2','123456','0173585632','ducminhh1999@gmail.com2',1);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user3','123456','0173585633','ducminhh1999@gmail.com3',2);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user4','123456','0173585633','ducminhh1999@gmail.com3',2);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user5','123456','0173585633','ducminhh1999@gmail.com3',2);
+insert into USER(User_Name, Password, Phone, Email, Role_id) values('user6','123456','0173585633','ducminhh1999@gmail.com3',2);
+
+-- ///////////////////////////////////////
+create table MENUCON(
+    idMenuCon int(11) not null primary key auto_increment,
+    TenMenuCon nvarchar(20)
+);
+insert into MENUCON(TenMenuCon) VALUES('Men');
+insert into MENUCON(TenMenuCon) VALUES('Women');
+insert into MENUCON(TenMenuCon) VALUES('Kids');
+insert into MENUCON(TenMenuCon) VALUES('Shoes');
+insert into MENUCON(TenMenuCon) VALUES('Bags');
+-- /////////////////////////////////////////
+
+create table SANPHAM(
+    MaSp int(11) not null primary key auto_increment,
+    Ten varchar(100) not null,
+    HinhAnh varchar(100) not null,
+    ThongTinChiTiet varchar(5000),
+    GiaBan int(100),
+    SoLuong int(100),
+    MauSac varchar(100),
+    Size varchar(100),
+    Tag varchar(100),
+    TrangThai varchar(100) not null,
+    NgayDang date,
+    IdMenuCon int(11),
+    constraint fk_2 foreign key (IdMenuCon) references MENUCON(IdMenuCon)
+);
+-- Men
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Nam AD02','/template/web/img/AnhProjectNam/anh6.jpg','Áo phông nam phối OverDose xanh đen',250000,50,'black','free size','shirt','Sale','2020-03-17',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Phông Nam AD01','/template/web/img/AnhProjectNam/anh8.jpg','Áo phông nam in chữ',200000,50,'black','free size','shirt','Hot','2020-03-20',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Quần Nam AD01','/template/web/img/AnhProjectNam/Quan.jpg','Quần vải bó ống',200000,50,'black, brown','M,L,XL','trousers','Hot','2020-03-20',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set Nam AD01','/template/web/img/AnhProjectNam/Set.jpg','Set đồ nam BigBang chibi',300000,50,'white','M,L,XL','clothes','Sold Out','2020-03-18',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Phông Nam AD03','/template/web/img/AnhProjectNam/anh7.jpg','Áo phông nam phối OverDose đỏ xanh',250000,50,'black','free size','shirt','Sale','2020-03-17',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set Nam AD02','/template/web/img/AnhProjectNam/anh100.jpg','Set đồ nam hường nhạt',190000,50,'black','free size','shirt','Sale','2020-03-17',1);
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Sơ Mi AD01','/template/web/img/AnhProjectNam/anh1.jpg','Sơ mi trắng mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',294000,50,'white','M,L,XL','Shirts','Hot','2020-03-30',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Sơ Mi AD02','/template/web/img/AnhProjectNam/anh2.jpg','Sơ mi xanh mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát',294000,50,'blue','M,L,XL','Shirts','Hot','2020-03-30',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Phông Nam AD04','/template/web/img/AnhProjectNam/anh3.jpg','Áo cotton adidas hút ẩm',120000,50,'brown','M,L,XL','shirt','Sale','2020-03-30',1);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Sơ Mi AD03','/template/web/img/AnhProjectNam/anh4.jpg','Sơ mi trắng mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',294000,50,'white','M,L,XL','Shirts','Hot','2020-03-30',1);
+
+
+-- Women
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo Sơ MI MS01','/template/web/img/AnhProjectNu/anh1.jpg','100% cotton,Mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',445000,40,'green','M,L,XL','Shirts','Sale','2020-02-20',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Váy MS01','/template/web/img/AnhProjectNu/anh2.jpg','100% cotton,Mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',390000,40,'black','M,L,XL','skirt','Sale','2019-03-20',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Váy MS02','/template/web/img/AnhProjectNu/anh3.jpg','100% cotton,Mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',420000,40,'black','M,L,XL','skirt','Sale','2020-03-10',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Váy MS03','/template/web/img/AnhProjectNu/anh4.jpg','100% cotton,Mềm mại, co giãn tốt, có độ thấm hút mồ hôi và hút ẩm cao, thoáng mát.',420000,40,'black,white','M,L,XL','skirt','Sale','2020-03-10',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo thun AD10','/template/web/img/AnhProjectNu/anh5.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',150000,90,'green','M,L,XL','shirt','Hot','2020-03-30',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo thun AD11','/template/web/img/AnhProjectNu/anh13.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái, có độ thấm hút tốt, chống nhăn cao và tránh bám bụi.',150000,90,'black','M,L,XL','shirt','Hot','2020-03-30',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Đồ công sở AD12','/template/web/img/AnhProjectNu/anh6.jpg','70% polyester, 28% viscose, 2% spandex.',750000,20,'black','M,L,XL','dress','Hot','2020-03-30',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Đồ công sở AD13','/template/web/img/AnhProjectNu/anh12.jpg','70% polyester, 28% viscose, 2% spandex.',750000,20,'black','M,L,XL','dress','Hot','2020-03-30',2);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('ÁO thun AD14','/template/web/img/AnhProjectNu/anh10.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái, có độ thấm hút tốt, chống nhăn cao và tránh bám bụi.',200000,30,'black','M,L,XL','shirt','Hot','2020-03-30',2);
+
+
+-- children
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Váy Ad21','/template/web/img/anhTreEm/anh1.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',250000,40,'yellow','M,L,XL','skirt','Sale','2020-01-20',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set trẻ em AD22','/template/web/img/anhTreEm/anh4.jpg','70% polyester, 28% viscose, 2% spandex thấm mồ hôi ',320000,40,'blue','M,L,XL','clothes','Sale','2020-03-16',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Vay AD23','/template/web/img/anhTreEm/anh2.jpg','70% polyester, 28% viscose, 2% spandex thấm mồ hôi',250000,40,'white and black','M,L,XL','skirt','Sale','2020-03-20',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set áo gấu','/template/web/img/anhTreEm/anh3.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',200000,15,'white and brown','M,L,XL','set','Hot','2020-03-20',3);
+
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set trẻ em AD24','/template/web/img/anhTreEm/anh5.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',250000,15,'blue','M,L,XL','set','Hot','2020-02-20',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Set trẻ em AD25','/template/web/img/anhTreEm/anh6.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',150000,15,'white','M,L,XL','set','Hot','2020-02-20',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Vay AD26','/template/web/img/anhTreEm/anh10.jpg','70% polyester, 28% viscose, 2% spandex thấm mồ hôi',200000,15,'white and brown','M,L,XL','set','Hot','2020-02-20',3);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Áo AD27','/template/web/img/anhTreEm/anh11.jpg','52% cotton, 48% polyester,Cảm giác mềm mại, thoải mái',100000,15,'blue','M,L,XL','set','Hot','2020-02-20',3);
+
+-- shoes
+insert into SanPham(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay Nike Air','/template/web/img/anhShoes/anh1.jpg','Giày thể thao, đế đàn hồi, thấm hút mồ hôi',750000,40,'white and red','39,40,41,42','Nike','Sale','2020-03-20',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay The Thao','/template/web/img/anhShoes/anh3.jpg','Giày thủ công với logo được thêu bằng tay',800000,40,'white and black','39,40,41,42','Sport','Sale','2020-03-20',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay Gabbana','/template/web/img/anhShoes/anh2.jpg','a ',920000,35,'Giày thủ công với logo được thêu bằng tay','39,40,41,42','Dolce','Sale','2020-03-20',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay HD41','/template/web/img/anhShoes/anh5.jpg','Giày thể thao, đế đàn hồi, thấm hút mồ hôi',740000,25,'white and blue','Sport','39,40,41,42','Sale','2020-03-16',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay HD42','/template/web/img/anhShoes/anh7.jpg','Giày thể thao, đế đàn hồi, thấm hút mồ hôi',740000,25,'white and blue','Sport','39,40,41,42','Sale','2020-03-16',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay HD43','/template/web/img/anhShoes/anh8.jpg','Giày đế cao su, chất lượng cao',700000,25,'white and blue','Dolce','39,40,41,42','Sale','2020-03-16',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay Da AD41','/template/web/img/anhShoes/anh14.jpg','Giày da chống nước, lửa',1740000,25,'white','leather shoes','39,40,41,42','Hot','2020-03-16',4);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Giay Da AD42','/template/web/img/anhShoes/anh15.jpg','Giày da chống nước, lửa',1740000,25,'sliver','leather shoes','39,40,41,42','Hot','2020-03-16',4);
+
+
+-- Bag
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Columpia','/template/web/img/anhBag/anh1.jpg','Cặp vải chống nước',350000,40,'black','free size','Sport','Sale','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Penguins','/template/web/img/anhBag/anh5.jpg','Túi tote được làm từ vải nhập khẩu',150000,40,'brown','free size','Hand Bag','Sale','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Carlsbery','/template/web/img/anhBag/anh2.jpg','Túi xách thể thao phong cách',180000,40,'green','free size','Hand Bag','Sale','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Basic','/template/web/img/anhBag/anh4.jpg','Cặp đeo vải thô',150000,70,'blue','free size','Sport','Sale','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Túi da HD51','/template/web/img/anhBag/anh10.jpg','Túi da hàng hiệu',150000,70,'blue','free size','Sport','Sale','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Túi HD52','/template/web/img/anhBag/anh11.jpg','Túi đeo chéo đựng điện thoại, ví...',150000,70,'black','free size','Sport','Hot','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Túi HD53','/template/web/img/anhBag/anh12.jpg','Túi đựng laptop, sách vở tiện dụng',150000,70,'black','free size','Sport','Hot','2020-03-16',5);
+
+insert into SANPHAM(Ten, HinhAnh, ThongTinChiTiet, GiaBan, SoLuong,MauSac,Size,Tag, TrangThai,NgayDang, IdMenuCon)
+values ('Cặp HD54','/template/web/img/anhBag/anh13.jpg','Cặp rằn ri đeo chéo tiện dụng',150000,70,'green','free size','Sport','Hot','2020-03-16',5);
+-- /////////////////////////////////////////
+-- ////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+create table DANHSACHYEUTHICH(
+    id_gioHang int(11) auto_increment,
+    maSp int(11) not null,
+    soLuongBan int(100),
+    id int(11),
+    constraint pk10 primary key (id_gioHang , maSp),
+    constraint fk_3 foreign key (id)   references user(id),
+    constraint fk_4 foreign key (maSp) references SanPham(maSp)
+);
+insert into DANHSACHYEUTHICH(maSp, soLuongBan, id) VALUES (1,1,2);
+insert into DANHSACHYEUTHICH(maSp, soLuongBan, id) VALUES (2,1,2);
+
+-- //////////////////////////////////////////////////////
+create table GIOHANG(
+    id_mycart int(10) auto_increment,
+    maSp int(11) not null,
+    soLuongMua int(11),
+    id_user int(11),
+    tongtien int(11),
+    constraint pk100 primary key (id_mycart, maSp),
+    constraint fk_5 foreign key (id_user) references user(id),
+   constraint fk_6 foreign key (maSp) references sanpham(maSp)
+);
+
+select *
+from GIOHANG;
+-- ////////////////////////////
+insert into GIOHANG (maSp,soLuongMua, id_user,tongtien) values (1,1,2,1029);
+insert into GIOHANG (maSp,soLuongMua, id_user,tongtien) values (5,1,2,1232);
+insert into GIOHANG (maSp,soLuongMua, id_user,tongtien) values (6,1,2,1231);
+
+--  //////////////////////
+create table COUPON(
+    Id_Coupon varchar(10) primary key ,
+    Name_Coupon varchar(20),
+    Discount int(20)
+);
+insert into coupon values ('haui','Giam 20%',20);
+insert into coupon values ('teoteo','Giam 50%', 50);
+
+create table DONHANG(
+    id_DH int(100) not null primary key auto_increment,
+    FirstName varchar(100),
+    LastName varchar(100),
+    CompanyName varchar(100),
+    Email varchar(100),
+    Phone varchar(100),
+    Address varchar(100),
+    Province varchar(100),
+    District varchar(100),
+    Apartment varchar(100),
+    Commune varchar(100),
+    PostCode varchar(100),
+    SpecialNotes varchar(100),
+    Modefied_Date date,
+    TongTien int,
+    PaymentMethod varchar(20),
+    id_user int(100),
+    ListProduct varchar(1000),
+    constraint fk1232 foreign key (id_user) references user(id)
+);
+-- contact
+create table contact(
+    id_contact int(10) auto_increment primary key ,
+    yourName varchar(100),
+    email varchar(100),
+    subject varchar(100),
+    company varchar(100),
+    messsage varchar(100)
+
+);
+# --------------------------------------////////////////////////////////////////////////////////////
+# blog//////////////////////////////*********************
+create table BLOG(
+    Id_Blog int(10) auto_increment primary key ,
+    Title varchar(100),
+    Image varchar(100),
+    Content varchar(1000),
+    CreatedDate date,
+    CreatedBy int(10),
+    Id_Category int,
+    constraint fk_3000 foreign key (Id_Category) references menuCon(IdMenuCon),
+    constraint fk_3001 foreign key (CreatedBy) references USER(Id)
+);
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('Tui cam tay thoi thuong','/template/web/img/blog/blog1.jpg','Túi da nam cầm tay là người bạn không thể thiếucủa các đấng mày râu.Những chiếc túi da cầm tay không
+chỉ có công dụng đựng giấy tờ, tiền bạc mà một chiếc túi da nam cầm tay cao cấp ...','2020-03-16',1,2);
+
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('7 cách mix đo mua đong','/template/web/img/blog/blog3.jpg','Áo khoác phao là chiếc áo khoác không thể thiếu trong những ngày đại hàn siêu lạnh. Về khoản giữ ấm thì khỏi bàn đến. Vì nếu lỡ trời có mưa phùn, gió lùa hay thậm chí là tuyết rơi thì chiếc áo khoác phao này vẫn “cân” hết nhé!','2020-03-16',1,2);
+
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('Tui da của chang','/template/web/img/blog/blog4.jpg','Túi da đã trở thành vật dụng quen thuộc đối cả phụ nữ và đàn ông. Khi mà công nghiệp thời trang nam cũng ngày càng phát triển nhu cầu thể hiện phong cách của nam giới cũng không thua kém gì nữ giới. Vì vậy những phụ kiện đi kèm như túi xách nam...','2020-03-16',1,1);
+
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('Bi kip Đa Lat','/template/web/img/blog/blog5.jpg','Trang phục đi du lịch Đà Lạt không thể bỏ qua những chiếc áo khoác dáng dài bởi độ chất và ‘ ăn ảnh’. Những chiếc áo khoác dáng dài, đặc biệt với chất liệu dạ khá hot trong thời gian gần đây là một món đồ các nàng không nên làm lơ khi soạn tủ đồ của mình','2020-03-16',1,2);
+
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('Vay Maxi','/template/web/img/blog/blog6.jpg','Đầm maxi được ưa chuộng bởi nó tôn lên vẻ nữ tính, ngọt ngào và đầy quyến rũ của người mặc. Không chỉ có vậy, phần lớn váy maxi đều được may từ các chất liệu như voan, lụa, hoặc lanh (linen) nên luôn tạo cảm giác thoáng mát, thoải mái, đặc biệt trong mùa hè oi nóng.','2020-03-16',1,2);
+
+insert into BLOG(Title, Image, Content, CreatedDate, CreatedBy, Id_Category)
+values ('Day lung da ve đep đung đan','/template/web/img/blog/blog7.jpg','Những đàn ông đứng tuổi là những người có độ tuổi ngoài 50. Họ thường là những người đàn ông thành đạt hoặc có chỗ đứng nhất định trong xã hội. Yêu cầu về ngoại hình cũng như tác phong của các quý ông này khá là kỹ tính. Trang phục đi làm, gặp đối tác, khách hàng, bạn bè cũng đều khác nhau. Có sự đầu tư về các phụ kiện đi kèm. Một trong những phụ kiện làm nên vẻ đẹp đứng đắn cho họ chính là dây lưng da.','2020-03-16',1,2);
+
+# --ahiiiiiiiiiiiiiiiiii comment
+create table COMMENT (
+    Id_comment int(10) auto_increment primary key ,
+    Name varchar(100),
+    Email varchar(100),
+    Website varchar(1000),
+    Comment varchar(5000),
+    Messsage varchar(100),
+    CreatedDate date,
+    Id_Blog int,
+    constraint fk_3000 foreign key (Id_Blog) references BLOG(Id_Blog)
+);
+
+create table EmailSubsribe(
+    Id_Email int(10) auto_increment primary key,
+    Email varchar (1000),
+    CreatedDate date
+);
